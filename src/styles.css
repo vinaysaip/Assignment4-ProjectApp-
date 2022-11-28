@@ -1,0 +1,59 @@
+html,
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    padding-left: 1em;
+}
+
+.logo-title {
+    display: flex;
+}
+
+.search-bar {
+    height: 2em;
+    width: 20em;
+}
+
+.login-text {
+    color: white;
+    font-weight: bold;
+    padding-right: 2em;
+}
+
+.logo {
+    height: 5em;
+    width: 6em;
+}
+
+.card-body {
+    width: 250px;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.imageClass {
+    width: 100%;
+}
+
+.text-class {}
+
+.card-container {
+    padding: 20px;
+    display: flex;
+}
+
+.user-icon {
+    height: 1em;
+}
