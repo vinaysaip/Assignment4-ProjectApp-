@@ -2,37 +2,40 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from './HeadingComponent';
 import CardComponent from './CardComponent';
-import {Team} from './Teamdata';
-import SearchComponent from "./SearchComponent";
-import { useState } from "react";
-
+import vinayPic from './assets/Vinay_Puvvadi.jpg'
 title = "Web Pirates";
 
-const teamInformation = Team;
+const teamInformation = [
+  {
+    name: "Vinay Puvvadi",
+    company: "Deloitte",
+    designaton: "Consultant",
+    location: "Hyderabad",
+    id: "1",
+    image: vinayPic,
+  },
+  {
+    name: "Vinay Puvvadi",
+    company: "Deloitte",
+    designaton: "Consultant",
+    location: "Hyderabad",
+    id: "2",
+    image: vinayPic,
+  }
+]
 
-const CardContainer = ({filteredNames})=>{
-  return(
+const BodyComponent = () => {
+  return (
     <div className="card-container">
-       {filteredNames.map((temmateDetails) => (
+       {teamInformation &&
+        teamInformation.length > 0 &&
+        teamInformation.map((temmateDetails) => (
           <CardComponent
             key={temmateDetails.id}
             temmateDetails={temmateDetails}
           />
         ))}
     </div>
-  );
-
-}
-
-const BodyComponent = () => {
-  const [filteredNames, setFilteredNames] = useState(teamInformation);
-  return (
-    <>
-    <div className="seach-div">
-    <SearchComponent  setFilteredNames={setFilteredNames}/>
-    </div>
-    <CardContainer filteredNames={filteredNames}/>
-    </>
   );
 };
 

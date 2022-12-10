@@ -1,6 +1,6 @@
 html,
 body {
-    font-family: Verdana, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .header {
@@ -22,7 +22,6 @@ body {
 .search-bar {
     height: 2em;
     width: 20em;
-    border: 1px solid black;
 }
 
 .login-text {
@@ -37,7 +36,7 @@ body {
 }
 
 .card-body {
-    width: 300px;
+    width: 250px;
     border: 1px solid black;
     padding: 20px;
     margin: 20px;
@@ -46,64 +45,15 @@ body {
 
 .imageClass {
     width: 100%;
-    height: 325px;
 }
 
-.text-name {
-    font-weight: bold;
-    margin: 5px;
-    font-size: 18px;
-}
-
-.text-class {
-    margin: 5px;
-    color: dimgrey;
-}
-
-.text-location {
-    color: dimgrey;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.text-company {
-    color: darkgoldenrod;
-    font-weight: 800;
-    font-size: 14px;
-}
+.text-class {}
 
 .card-container {
     padding: 20px;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .user-icon {
     height: 1em;
-}
-
-.card-footer {
-    background-color: #e1e3e5;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.logo img {
-    width: 40px;
-    height: 40px;
-}
-
-.seach-div {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-.search-btn {
-    height: 2.3em;
-    background-color: black;
-    color: white;
 }
