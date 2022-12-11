@@ -1,24 +1,20 @@
 import { useState } from "react";
 import { Team } from "./Teamdata";
 
-const searchNames = (searchText) => {
-  return Team.filter(
-    (res) =>
-      res.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) ||
-      res.designation
-        .toLocaleLowerCase()
-        .includes(searchText.toLocaleLowerCase())
+const searchNames = (searchText, teammates) => {
+  return teammates.filter((res) =>
+    res.login.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
   );
 };
 
-const SearchComponent = ({ setFilteredNames }) => {
+const SearchComponent = ({ setFilteredNames, teamData }) => {
   const [searchText, setSearchText] = useState("");
   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const filteredNames = searchNames(searchText);
+          const filteredNames = searchNames(searchText, teamData);
           console.log(searchText);
           setFilteredNames(filteredNames);
           console.log(setFilteredNames);
