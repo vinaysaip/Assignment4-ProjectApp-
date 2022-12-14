@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 const CardComponent = ({ temmateDetails }) => {
   return (
     <div className="card-body">
       <img src={temmateDetails.avatar_url} className="imageClass" />
       {""}
-      <div className="text-name">{temmateDetails.login}</div>
+      <Link to={`/selected-profile/${temmateDetails.login}`}>
+        <div className="text-name">{temmateDetails.login}</div>
+      </Link>
       <div className="text-class text-location">{temmateDetails.bio}</div>
       <div className="text-class">
         {temmateDetails.designation} @{" "}

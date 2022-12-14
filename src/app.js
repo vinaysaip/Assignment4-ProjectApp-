@@ -1,57 +1,46 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HeaderComponent from "./HeadingComponent";
-import CardComponent from "./CardComponent";
-import { Team } from "./Teamdata";
-import SearchComponent from "./SearchComponent";
-import { useState, useEffect } from "react";
-import { git_Info } from "./api";
+import HeaderComponent from "./Components/HeadingComponent";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import AboutUSComponent from "./Components/AboutUs.js";
+import ErrorPage from "./Components/ErrorPage";
+import SearchResultsComponent from "./Components/ResultsComponent";
+import SelectedProfile from "./Components/SelectedProfile";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-title = "Web Pirates";
-
-const teamInformation = Team;
-
-const CardContainer = ({ filteredNames }) => {
-  return (
-    <div className="card-container">
-      {filteredNames.map((temmateDetails) => (
-        <CardComponent
-          key={temmateDetails.id}
-          temmateDetails={temmateDetails}
-        />
-      ))}
-    </div>
-  );
-};
-
-const BodyComponent = () => {
-  const [teammates, setTeammates] = useState([]);
-  const [filteredNames, setFilteredNames] = useState(teamInformation);
-  const getUsers = async () => {
-    const users = await git_Info();
-    setTeammates(users);
-    console.log(users);
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
+const AppLayout = () => {
   return (
     <>
-      <div className="seach-div">
-        <SearchComponent setFilteredNames={setTeammates} teamData={teammates} />
-      </div>
-      <CardContainer filteredNames={teammates} />
+      <HeaderComponent />
+      <Outlet />
     </>
   );
 };
-
-const AppLayout = () => (
-  <>
-    <HeaderComponent />
-    <BodyComponent />
-  </>
-);
-console.log(HeaderComponent());
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "about",
+        element: <AboutUSComponent />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "search",
+        element: <SearchResultsComponent />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "selected-profile/:loginid",
+        element: <SelectedProfile />,
+        errorElement: <ErrorPage />,
+      },
+    ],
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={router} />);
+
+export default AppLayout;

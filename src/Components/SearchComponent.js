@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Team } from "./Teamdata";
 
 const searchNames = (searchText, teammates) => {
   return teammates.filter((res) =>
@@ -15,9 +14,7 @@ const SearchComponent = ({ setFilteredNames, teamData }) => {
         onSubmit={(e) => {
           e.preventDefault();
           const filteredNames = searchNames(searchText, teamData);
-          console.log(searchText);
           setFilteredNames(filteredNames);
-          console.log(setFilteredNames);
         }}
       >
         <input
