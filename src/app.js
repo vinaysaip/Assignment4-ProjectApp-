@@ -1,51 +1,46 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HeaderComponent from './HeadingComponent';
-import CardComponent from './CardComponent';
-import vinayPic from './assets/Vinay_Puvvadi.jpg'
-title = "Web Pirates";
+import HeaderComponent from "./Components/HeadingComponent";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import AboutUSComponent from "./Components/AboutUs.js";
+import ErrorPage from "./Components/ErrorPage";
+import SearchResultsComponent from "./Components/ResultsComponent";
+import SelectedProfile from "./Components/SelectedProfile";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const teamInformation = [
-  {
-    name: "Vinay Puvvadi",
-    company: "Deloitte",
-    designaton: "Consultant",
-    location: "Hyderabad",
-    id: "1",
-    image: vinayPic,
-  },
-  {
-    name: "Vinay Puvvadi",
-    company: "Deloitte",
-    designaton: "Consultant",
-    location: "Hyderabad",
-    id: "2",
-    image: vinayPic,
-  }
-]
-
-const BodyComponent = () => {
+const AppLayout = () => {
   return (
-    <div className="card-container">
-       {teamInformation &&
-        teamInformation.length > 0 &&
-        teamInformation.map((temmateDetails) => (
-          <CardComponent
-            key={temmateDetails.id}
-            temmateDetails={temmateDetails}
-          />
-        ))}
-    </div>
+    <>
+      <HeaderComponent />
+      <Outlet />
+    </>
   );
 };
-
-const AppLayout=()=>
-(
-    <>
-        <HeaderComponent/>
-        <BodyComponent/>
-    </>
-)
-console.log(HeaderComponent());
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "about",
+        element: <AboutUSComponent />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "search",
+        element: <SearchResultsComponent />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "selected-profile/:loginid",
+        element: <SelectedProfile />,
+        errorElement: <ErrorPage />,
+      },
+    ],
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout/>);
+root.render(<RouterProvider router={router} />);
+
+export default AppLayout;
