@@ -50,6 +50,11 @@ body {
     height: 325px;
 }
 
+.about-us {
+    width: 200px;
+    height: 200px;
+}
+
 .text-name {
     font-weight: bold;
     margin: 5px;
